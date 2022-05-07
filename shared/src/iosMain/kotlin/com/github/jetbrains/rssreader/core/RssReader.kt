@@ -17,6 +17,7 @@ fun RssReader.Companion.create(withLog: Boolean) = RssReader(
         IosFeedParser()
     ),
     FeedStorage(
+        // iOSはNSUserDefaults
         AppleSettings(NSUserDefaults.standardUserDefaults()),
         Json {
             ignoreUnknownKeys = true
