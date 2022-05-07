@@ -6,7 +6,7 @@ import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.logging.*
 import java.util.concurrent.TimeUnit
 
-internal fun AndroidHttpClient(withLog: Boolean) = HttpClient(OkHttp) {
+internal fun AndroidHttpClient(withLog: Boolean) = HttpClient(OkHttp /* OkHttpを使用 */) {
     engine {
         config {
             retryOnConnectionFailure(true)
