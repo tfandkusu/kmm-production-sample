@@ -24,6 +24,9 @@ interface Effect
 interface Store<S : State, A : Action, E : Effect> {
     /**
      * 画面の状態を取得する
+     *
+     * @return 状態はStateFlowで表現。ComposeのStateに変換可能。LiveDataはAndroid SDKに依存するため、使えない。
+     *
      */
     fun observeState(): StateFlow<S>
 
