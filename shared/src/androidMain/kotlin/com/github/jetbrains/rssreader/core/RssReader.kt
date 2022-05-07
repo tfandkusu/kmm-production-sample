@@ -19,6 +19,7 @@ fun RssReader.Companion.create(ctx: Context, withLog: Boolean) = RssReader(
         AndroidFeedParser()
     ),
     FeedStorage(
+        // AndroidはSharedPreferences
         AndroidSettings(ctx.getSharedPreferences("rss_reader_pref", Context.MODE_PRIVATE)),
         Json {
             ignoreUnknownKeys = true
