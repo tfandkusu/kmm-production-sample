@@ -2,6 +2,7 @@ import SwiftUI
 import RssReader
 
 struct RootView: View {
+    /* アプリケーション全体からアクセス可能にする */
     @EnvironmentObject var store: ObservableFeedStore
     @SwiftUI.State var errorMessage: String?
     
