@@ -16,7 +16,9 @@ class RSSApp: App {
     let store: ObservableFeedStore
     
     required init() {
+        // iOS向けRssReaderの実装を作成する
         rss = RssReader.Companion().create(withLog: true)
+        // Swift UI側から監視できるStore
         store = ObservableFeedStore(store: FeedStore(rssReader: rss))
     }
   
@@ -27,7 +29,13 @@ class RSSApp: App {
     }
 }
 
+/**
+ ObservableObject プロトコルはApple製。Combineフレームワークの一部
+ */
 class ObservableFeedStore: ObservableObject {
+    
+    // @Published ObservableObjectプロトコルに準拠しているクラスにあるフィールドに @Published を付けると
+    // 変更をSwift UIに反映することができる
     @Published public var state: FeedState =  FeedState(progress: false, feeds: [], selectedFeed: nil)
     @Published public var sideEffect: FeedSideEffect?
     
@@ -38,6 +46,7 @@ class ObservableFeedStore: ObservableObject {
 
     init(store: FeedStore) {
         self.store = store
+        // KotlinのFlowはSwiftから使えないので、コールバックに変換している
         stateWatcher = self.store.watchState().watch { [weak self] state in
             self?.state = state
         }
@@ -51,6 +60,7 @@ class ObservableFeedStore: ObservableObject {
     }
     
     deinit {
+        // 監視解除する
         stateWatcher?.close()
         sideEffectWatcher?.close()
     }
