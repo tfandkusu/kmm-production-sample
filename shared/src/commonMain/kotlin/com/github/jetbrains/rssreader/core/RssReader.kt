@@ -7,6 +7,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 
+/**
+ * いわゆるRepository
+ *
+ * @param feedLoader WebからRSSをとってくる担当
+ * @param feedStorage ローカル入出力担当
+ * @param settings 設定
+ */
 class RssReader internal constructor(
     private val feedLoader: FeedLoader,
     private val feedStorage: FeedStorage,
@@ -16,12 +23,16 @@ class RssReader internal constructor(
     suspend fun getAllFeeds(
         forceUpdate: Boolean = false
     ): List<Feed> {
+        // キャッシュからRSSを取得
         var feeds = feedStorage.getAllFeeds()
 
         if (forceUpdate || feeds.isEmpty()) {
+            // RSSのURL一覧を取得
             val feedsUrls = if (feeds.isEmpty()) settings.defaultFeedUrls else feeds.map { it.sourceUrl }
+            // 各RSSから取得できる記事一覧を取得
             feeds = feedsUrls.mapAsync { url ->
                 val new = feedLoader.getFeed(url, settings.isDefault(url))
+                // ローカルに保存する
                 feedStorage.saveFeed(new)
                 new
             }
@@ -30,9 +41,14 @@ class RssReader internal constructor(
         return feeds
     }
 
+    /**
+     * RSSを追加する
+     */
     @Throws(Exception::class)
     suspend fun addFeed(url: String) {
+        // RSSから記事一覧を取得する
         val feed = feedLoader.getFeed(url, settings.isDefault(url))
+        // ローカルに保存する
         feedStorage.saveFeed(feed)
     }
 

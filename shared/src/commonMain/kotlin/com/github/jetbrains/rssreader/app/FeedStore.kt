@@ -182,9 +182,14 @@ class FeedStore(
         }
     }
 
+    /**
+     * RSSの追加
+     */
     private suspend fun addFeed(url: String) {
         try {
+            // 取得してローカルに保存する
             rssReader.addFeed(url)
+            // 全件ローカルから取得する
             val allFeeds = rssReader.getAllFeeds(false)
             dispatch(FeedAction.Data(allFeeds))
         } catch (e: Exception) {
