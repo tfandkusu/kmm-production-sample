@@ -1,5 +1,11 @@
 # KMM RSS Reader
 
+## 学習のために改修
+
+- 日本語のコメントを追加
+
+## 以下、元の説明文
+
 <img src="/media/ios+android.png"/>  
 
 This is an open-source, mobile, cross-platform application built
