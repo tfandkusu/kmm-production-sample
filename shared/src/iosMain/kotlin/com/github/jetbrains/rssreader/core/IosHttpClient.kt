@@ -5,7 +5,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.darwin.*
 import io.ktor.client.plugins.logging.*
 
-internal fun IosHttpClient(withLog: Boolean) = HttpClient(Darwin) {
+internal fun IosHttpClient(withLog: Boolean) = HttpClient(Darwin /* NSURLSessionを使用 */) {
     engine {
         configureRequest {
             setAllowsCellularAccess(true)

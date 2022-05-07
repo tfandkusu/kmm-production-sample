@@ -8,9 +8,14 @@ import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import kotlinx.serialization.json.Json
 
+/**
+ * Android向けRssReader作成
+ */
 fun RssReader.Companion.create(ctx: Context, withLog: Boolean) = RssReader(
     FeedLoader(
+        // OkHttpを使ったHTTPクライアント
         AndroidHttpClient(withLog),
+        // Android SDKを使ったXMLパーサ
         AndroidFeedParser()
     ),
     FeedStorage(

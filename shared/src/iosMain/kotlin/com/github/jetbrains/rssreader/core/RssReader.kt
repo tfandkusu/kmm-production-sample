@@ -8,6 +8,9 @@ import io.github.aakira.napier.Napier
 import kotlinx.serialization.json.Json
 import platform.Foundation.NSUserDefaults
 
+/**
+ * iOS向けRssReaderの実装
+ */
 fun RssReader.Companion.create(withLog: Boolean) = RssReader(
     FeedLoader(
         IosHttpClient(withLog),
