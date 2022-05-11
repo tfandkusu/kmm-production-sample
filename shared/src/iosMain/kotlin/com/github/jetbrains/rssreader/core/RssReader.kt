@@ -1,7 +1,7 @@
 package com.github.jetbrains.rssreader.core
 
-import com.github.jetbrains.rssreader.core.datasource.network.FeedLoader
-import com.github.jetbrains.rssreader.core.datasource.storage.FeedStorage
+import com.github.jetbrains.rssreader.core.datasource.network.FeedLoaderImpl
+import com.github.jetbrains.rssreader.core.datasource.storage.FeedStorageImpl
 import com.russhwolf.settings.AppleSettings
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -12,11 +12,11 @@ import platform.Foundation.NSUserDefaults
  * iOS向けRssReaderの実装
  */
 fun RssReader.Companion.create(withLog: Boolean) = RssReader(
-    FeedLoader(
+    FeedLoaderImpl(
         IosHttpClient(withLog),
         IosFeedParser()
     ),
-    FeedStorage(
+    FeedStorageImpl(
         // iOSはNSUserDefaults
         AppleSettings(NSUserDefaults.standardUserDefaults()),
         Json {

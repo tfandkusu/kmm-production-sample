@@ -14,7 +14,7 @@ import kotlinx.coroutines.coroutineScope
  * @param feedStorage ローカル入出力担当
  * @param settings 設定
  */
-class RssReader internal constructor(
+class RssReader constructor(
     private val feedLoader: FeedLoader,
     private val feedStorage: FeedStorage,
     private val settings: Settings = Settings(setOf("https://blog.jetbrains.com/kotlin/feed/"))

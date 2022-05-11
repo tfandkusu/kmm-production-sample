@@ -4,3 +4,4 @@ include(":shared")
 include(":androidApp")
 
 enableFeaturePreview("VERSION_CATALOGS")
+include(":test")
