@@ -43,6 +43,13 @@ kotlin {
                 api(libs.koin.core)
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.mockk)
+                implementation(libs.kotest)
+            }
+        }
 
         val androidMain by getting {
             dependencies {
