@@ -47,6 +47,7 @@ accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiper
 work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work-runtime-ktx" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 # Unit test
+junit = 'junit:junit:4.13.2'
 mockk = 'io.mockk:mockk:1.12.2'
 kotest = 'io.kotest:kotest-runner-junit5:5.3.0'
 

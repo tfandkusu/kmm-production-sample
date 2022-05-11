@@ -8,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath(libs.bundles.plugins)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
     }
 }
 
